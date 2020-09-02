@@ -44,7 +44,7 @@ db.orders.insertMany([
   {
     "cust_id": "bugs@bunny.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "B",
     "price": 2532,
     "items": [
         {"sku":"BQ-174","qty":87,"price":25},
@@ -54,7 +54,7 @@ db.orders.insertMany([
   {
     "cust_id": "homer@simpson.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "C",
     "price": 3410,
     "items": [
         {"sku":"HH-240","qty":55,"price":62},
@@ -75,7 +75,7 @@ db.orders.insertMany([
   {
     "cust_id": "fred@flintstone.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "B",
     "price": 11405,
     "items": [
         {"sku":"XF-869","qty":15,"price":55},
@@ -86,7 +86,7 @@ db.orders.insertMany([
   {
     "cust_id": "daffy@duck.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "C",
     "price": 3591,
     "items": [
         {"sku":"VK-976","qty":37,"price":27},
@@ -108,7 +108,7 @@ db.orders.insertMany([
   {
     "cust_id": "garfield@thecat.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "B",
     "price": 1549,
     "items": [
         {"sku":"RE-969","qty":23,"price":8},
@@ -118,7 +118,7 @@ db.orders.insertMany([
   {
     "cust_id": "tweety@bird.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "C",
     "price": 410,
     "items": [
         {"sku":"CU-771","qty":41,"price":10}
@@ -138,7 +138,7 @@ db.orders.insertMany([
   {
     "cust_id": "minnie@mouse.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "B",
     "price": 150,
     "items": [
         {"sku":"PR-964","qty":5,"price":10},
@@ -148,7 +148,7 @@ db.orders.insertMany([
   {
     "cust_id": "mickey@mouse.com",
     "ord_date": ISODate("2020-08-02"),
-    "status": "A",
+    "status": "C",
     "price": 50,
     "items": [
         {"sku":"PR-964","qty":1,"price":10},
@@ -169,7 +169,7 @@ db.orders.insertMany([
   {
     "cust_id": "bugs@bunny.com",
     "ord_date": ISODate("2020-08-03"),
-    "status": "A",
+    "status": "B",
     "price": 120,
     "items": [
         {"sku":"ZZ-965","qty":1,"price":10},
@@ -182,7 +182,7 @@ db.orders.insertMany([
   {
     "cust_id": "garfield@thecat.com",
     "ord_date": ISODate("2020-08-03"),
-    "status": "A",
+    "status": "C",
     "price": 700,
     "items": [
         {"sku":"RE-900","qty":1,"price":100},
@@ -205,7 +205,7 @@ db.orders.insertMany([
   {
     "cust_id": "snoopy@peanuts.com",
     "ord_date": ISODate("2020-08-03"),
-    "status": "A",
+    "status": "B",
     "price": 2000,
     "items": [
         {"sku":"ZO-436","qty":20,"price":10},
@@ -217,7 +217,7 @@ db.orders.insertMany([
   {
     "cust_id": "garfield@thecat.com",
     "ord_date": ISODate("2020-08-03"),
-    "status": "A",
+    "status": "C",
     "price": 3000,
     "items": [
         {"sku":"RE-900","qty":100,"price":10},
@@ -237,7 +237,7 @@ db.orders.insertMany([
   {
     "cust_id": "minnie@mouse.com",
     "ord_date": ISODate("2020-08-04"),
-    "status": "A",
+    "status": "B",
     "price": 200,
     "items": [
         {"sku":"AA-100","qty":10,"price":10},
@@ -247,7 +247,7 @@ db.orders.insertMany([
   {
     "cust_id": "mickey@mouse.com",
     "ord_date": ISODate("2020-08-04"),
-    "status": "A",
+    "status": "C",
     "price": 200,
     "items": [
         {"sku":"PR-864","qty":1,"price":25},
@@ -275,7 +275,7 @@ db.orders.insertMany([
   {
     "cust_id": "bugs@bunny.com",
     "ord_date": ISODate("2020-08-04"),
-    "status": "A",
+    "status": "B",
     "price": 900,
     "items": [
         {"sku":"MF-000","qty":30,"price":10},
@@ -286,7 +286,7 @@ db.orders.insertMany([
   {
     "cust_id": "garfield@thecat.com",
     "ord_date": ISODate("2020-08-04"),
-    "status": "A",
+    "status": "C",
     "price": 2250,
     "items": [
         {"sku":"snipE-900","qty":100,"price":10},
@@ -308,7 +308,7 @@ db.orders.insertMany([
   {
     "cust_id": "mickey@mouse.com",
     "ord_date": ISODate("2020-08-05"),
-    "status": "A",
+    "status": "B",
     "price": 100,
     "items": [
         {"sku":"VV-540","qty":5,"price":5},
@@ -319,7 +319,7 @@ db.orders.insertMany([
   {
     "cust_id": "bugs@bunny.com",
     "ord_date": ISODate("2020-08-05"),
-    "status": "A",
+    "status": "C",
     "price": 600,
     "items": [
         {"sku":"BQ-174","qty":100,"price":1},
@@ -340,7 +340,7 @@ db.orders.insertMany([
   {
     "cust_id": "snoopy@peanuts.com",
     "ord_date": ISODate("2020-08-05"),
-    "status": "A",
+    "status": "B",
     "price": 1050,
     "items": [
         {"sku":"ZR-800","qty":5,"price":10},
@@ -350,7 +350,7 @@ db.orders.insertMany([
   {
     "cust_id": "snoopy@peanuts.com",
     "ord_date": ISODate("2020-08-05"),
-    "status": "A",
+    "status": "C",
     "price": 3300,
     "items": [
         {"sku":"ZR-800","qty":10,"price":10},
@@ -375,7 +375,7 @@ db.orders.insertMany([
   {
     "cust_id": "fred@flintstone.com",
     "ord_date": ISODate("2020-08-05"),
-    "status": "A",
+    "status": "B",
     "price": 3000,
     "items": [
         {"sku":"XF-901","qty":50,"price":20},
@@ -386,7 +386,7 @@ db.orders.insertMany([
   {
     "cust_id": "sponge@bob.com",
     "ord_date": ISODate("2020-08-06"),
-    "status": "A",
+    "status": "C",
     "price": 400,
     "items": [
         {"sku":"RH-000","qty":10,"price":10},
@@ -415,7 +415,7 @@ db.orders.insertMany([
   {
     "cust_id": "tweety@bird.com",
     "ord_date": ISODate("2020-08-06"),
-    "status": "A",
+    "status": "B",
     "price": 1200,
     "items": [
         {"sku":"CU-771","qty":40,"price":10},
@@ -426,7 +426,7 @@ db.orders.insertMany([
   {
     "cust_id": "scooby@doo.com",
     "ord_date": ISODate("2020-08-06"),
-    "status": "A",
+    "status": "C",
     "price": 1760,
     "items": [
         {"sku":"BR-964","qty":20,"price":10},
@@ -450,7 +450,7 @@ db.orders.insertMany([
   {
     "cust_id": "mickey@mouse.com",
     "ord_date": ISODate("2020-08-06"),
-    "status": "A",
+    "status": "B",
     "price": 1000,
     "items": [
         {"sku":"SS-164","qty":50,"price":10},
@@ -460,7 +460,7 @@ db.orders.insertMany([
   {
     "cust_id": "mickey@mouse.com",
     "ord_date": ISODate("2020-08-07"),
-    "status": "A",
+    "status": "C",
     "price": 2100,
     "items": [
         {"sku":"PD-500","qty":20,"price":100},
@@ -480,7 +480,7 @@ db.orders.insertMany([
   {
     "cust_id": "homer@simpson.com",
     "ord_date": ISODate("2020-08-07"),
-    "status": "A",
+    "status": "B",
     "price": 2000,
     "items": [
         {"sku":"LL-241","qty":100,"price":10},
@@ -490,7 +490,7 @@ db.orders.insertMany([
   {
     "cust_id": "snoopy@peanuts.com",
     "ord_date": ISODate("2020-08-07"),
-    "status": "A",
+    "status": "C",
     "price": 15000,
     "items": [
         {"sku":"ER-840","qty":50,"price":200},
@@ -511,7 +511,7 @@ db.orders.insertMany([
   {
     "cust_id": "daffy@duck.com",
     "ord_date": ISODate("2020-08-08"),
-    "status": "A",
+    "status": "B",
     "price": 1800,
     "items": [
         {"sku":"VV-000","qty":30,"price":20},
@@ -521,7 +521,7 @@ db.orders.insertMany([
   {
     "cust_id": "sponge@bob.com",
     "ord_date": ISODate("2020-08-08"),
-    "status": "A",
+    "status": "C",
     "price": 200,
     "items": [
         {"sku":"HH-240","qty":10,"price":50},
@@ -544,7 +544,7 @@ db.orders.insertMany([
   {
     "cust_id": "garfield@thecat.com",
     "ord_date": ISODate("2020-08-08"),
-    "status": "A",
+    "status": "B",
     "price": 600,
     "items": [
         {"sku":"HW-540","qty":10,"price":20},
@@ -555,7 +555,7 @@ db.orders.insertMany([
   {
     "cust_id": "tweety@bird.com",
     "ord_date": ISODate("2020-08-08"),
-    "status": "A",
+    "status": "C",
     "price": 500,
     "items": [
         {"sku":"CW-761","qty":20,"price":5},
@@ -578,7 +578,7 @@ db.orders.insertMany([
   {
     "cust_id": "minnie@mouse.com",
     "ord_date": ISODate("2020-08-08"),
-    "status": "A",
+    "status": "B",
     "price": 150,
     "items": [
         {"sku":"MM-134","qty":5,"price":10},
@@ -627,6 +627,7 @@ db.orders.insertOne({
   ord_date: ISODate("2020-08-08"),
   status: "A",
   price: 430,
+  comments: "This is a gift for Petunia",
   items: [
     { sku: "PP-541", qty: 10, price: 5 },
     { sku: "PP-583", qty: 20, price: 10 },
@@ -886,11 +887,11 @@ db.orders.find(
 ```SQL
 SELECT *
 FROM orders
-WHERE cust_id like "%na%"
+WHERE cust_id like "%mi%"
 ```
 
 ```javascript
-db.orders.find( { cust_id: /na/ } )
+db.orders.find( { cust_id: /mi/ } )
 ```
 
 ---
@@ -898,11 +899,11 @@ db.orders.find( { cust_id: /na/ } )
 ```SQL
 SELECT *
 FROM orders
-WHERE cust_id like "nac%"
+WHERE cust_id like "mic%"
 ```
 
 ```javascript
-db.orders.find( { cust_id: /^nac/ } )
+db.orders.find( { cust_id: /^mic/ } )
 ```
 
 ---
@@ -945,12 +946,12 @@ db.orders.count()
 ---
 
 ```SQL
-SELECT COUNT(cust_id)
+SELECT COUNT(comments)
 FROM orders
 ```
 
 ```javascript
-db.orders.find( { cust_id: { $exists: true } } ).count()
+db.orders.find( { comments: { $exists: true } } ).count()
 ```
 
 ---
