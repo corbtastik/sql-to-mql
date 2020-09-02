@@ -13,6 +13,7 @@ Mapping SQL operations to MQL one step at a time.
 2. Download & Install [MongoDB Community](https://www.mongodb.com/try/download/community)
     * This includes the `mongo` shell which we'll need
     * No local MongoDB server is needed if your using Atlas
+3. Connect to your cluster using the example below (your connection string will be different)
 
 ```shell
 # use your connection string here and YOUR-USERNAME
