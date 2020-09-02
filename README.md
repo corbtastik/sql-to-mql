@@ -589,7 +589,11 @@ db.orders.insertMany([
 
 ## Create and Alter
 
+SQL commands are provided as a reference to help map to the equivalent MQL operation.
+
 ### Create Table
+
+No matter what SQL database you use, you'll need to create a Schema upfront.  It must be exact and to make matters worse the syntax varies between database make and models.  What typically happens in real applications is there's boiler-plate code and tools to pseudo manage the changes, but its brittle and non-value added.  Typically once the DDL is inked no one wants to touch it or there's a lengthy change process you gotta battle through.  It makes life hard and people weepy.
 
 ```SQL
 /* parent table */
@@ -615,13 +619,18 @@ CREATE TABLE items (
 )
 ```
 
+Look mom no DDL, the schema is self-describing by the document structure.  Validation rules can be implemented to control the structure if you need it.  MongoDB can accommodate schema-less, semi-schema or schema validated...isn't that special.
+
 ```javascript
 db.orders.insertOne({
   cust_id: "porky@pig.com",
   ord_date: ISODate("2020-08-08"),
   status: "A",
   price: 430,
-  items: [ { sku: "PP-541", qty: 10, price: 5 }, { sku: "PP-583", qty: 20, price: 10 }, { sku: "PP-340", qty: 15, price: 12 } ]
+  items: [
+    { sku: "PP-541", qty: 10, price: 5 },
+    { sku: "PP-583", qty: 20, price: 10 },
+    { sku: "PP-340", qty: 15, price: 12 } ]
 });
 ```
 
