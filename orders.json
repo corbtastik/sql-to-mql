@@ -110,8 +110,8 @@
     "status": "B",
     "price": 150,
     "items": [
-        {"sku":"PR-964","qty":5,"price":10},
-        {"sku":"GU-447","qty":10,"price":10}
+        {"sku":"PR-965","qty":5,"price":10},
+        {"sku":"GU-448","qty":10,"price":10}
     ]
   },
   {
@@ -120,8 +120,8 @@
     "status": "C",
     "price": 50,
     "items": [
-        {"sku":"PR-964","qty":1,"price":10},
-        {"sku":"GU-447","qty":2,"price":20},
+        {"sku":"PR-967","qty":1,"price":10},
+        {"sku":"GU-449","qty":2,"price":20},
     ]
   },
   {
@@ -130,8 +130,8 @@
     "status": "A",
     "price": 510,
     "items": [
-        {"sku":"PR-964","qty":10,"price":10},
-        {"sku":"GU-447","qty":20,"price":20},
+        {"sku":"PR-966","qty":10,"price":10},
+        {"sku":"GU-449","qty":20,"price":20},
         {"sku":"GU-400","qty":1,"price":10}
     ]
   },
@@ -165,7 +165,7 @@
     "status": "A",
     "price": 2000,
     "items": [
-        {"sku":"HH-240","qty":10,"price":50},
+        {"sku":"HH-239","qty":10,"price":50},
         {"sku":"HH-241","qty":10,"price":50},
         {"sku":"HH-242","qty":10,"price":50},
         {"sku":"HH-243","qty":10,"price":50},
@@ -189,7 +189,7 @@
     "status": "C",
     "price": 3000,
     "items": [
-        {"sku":"RE-900","qty":100,"price":10},
+        {"sku":"RE-902","qty":100,"price":10},
         {"sku":"GH-800","qty":100,"price":20}
     ]
   },
@@ -199,8 +199,8 @@
     "status": "A",
     "price": 1250,
     "items": [
-        {"sku":"GU-447","qty":100,"price":10},
-        {"sku":"MG-923","qty":50,"price":5}
+        {"sku":"GU-450","qty":100,"price":10},
+        {"sku":"MG-924","qty":50,"price":5}
     ]
   },
   {
@@ -271,7 +271,7 @@
     "items": [
         {"sku":"FF-241","qty":10,"price":20},
         {"sku":"FF-242","qty":10,"price":30},
-        {"sku":"HH-243","qty":10,"price":40}
+        {"sku":"HH-143","qty":10,"price":40}
     ]
   },
   {
@@ -289,11 +289,10 @@
     "cust_id": "bugs@bunny.com",
     "ord_date": ISODate("2020-08-05"),
     "status": "C",
-    "price": 600,
+    "price": 300,
     "items": [
-        {"sku":"BQ-174","qty":100,"price":1},
-        {"sku":"UD-833","qty":200,"price":1},
-        {"sku":"BQ-174","qty":300,"price":1}
+        {"sku":"BQ-175","qty":100,"price":1},
+        {"sku":"UD-834","qty":200,"price":1}
     ]
   },
   {
