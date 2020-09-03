@@ -701,29 +701,30 @@ db.orders.drop()
 ```SQL
 // parent table
 INSERT INTO orders(cust_id, ord_date, status, price)
-VALUES ("nacho@libre.com", "2020-08-03 10:10:10", "A", 430)
+VALUES ("petunia@pig.com", "2020-08-06 12:00:00", "C", 100)
 
 // child table
 INSERT INTO items(order_id, sku, qty, price)
-VALUES (1, "VY-541", 10, 5)
+VALUES (1, "VY-541", 10, 10)
 
 INSERT INTO items(order_id, sku, qty, price)
-VALUES (1, "PD-583", 20, 10)
+VALUES (1, "PD-583", 10, 10)
 
 INSERT INTO items(order_id, sku, qty, price)
-VALUES (1, "RG-340", 15, 12)  
+VALUES (1, "RG-340", 10, 10)  
 ```
 
 ```javascript
 db.orders.insertOne({
-  "cust_id": "porky@pig.com",
-  "ord_date": ISODate("2020-08-08"),
-  "status": "A",
-  "price": 430,
+  "cust_id": "petunia@pig.com",
+  "ord_date": ISODate("2020-08-06"),
+  "status": "C",
+  "price": 100,
   "items": [
-    { "sku": "PP-541", "qty":10, "price": 5 },
-    { "sku": "PP-583", "qty":20, "price": 10 },
-    { "sku": "PP-340", "qty":15, "price": 12 }]
+    { "sku": "VY-541", "qty":10, "price": 10 },
+    { "sku": "PD-583", "qty":10, "price": 10 },
+    { "sku": "RG-340", "qty":10, "price": 10 }
+  ]
 })
 ```
 
@@ -770,27 +771,27 @@ db.orders.find(
 ```SQL
 SELECT *
 FROM orders
-WHERE status = "A"
+WHERE ord_date = TO_DATE("2020-08-06")
 ```
 
 ```javascript
 db.orders.find(
-    { status: "A" }
+    { ord_date: ISODate("2020-08-06") }
 )
 ```
 
 ---
 
 ```SQL
-SELECT cust_id, price
+SELECT cust_id, price, status
 FROM orders
-WHERE price = 5514
+WHERE price = 1000
 ```
 
 ```javascript
 db.orders.find(
-    { price: 5514 },
-    { cust_id: 1, price: 1, _id: 0 }
+    { price: 1000 },
+    { cust_id: 1, price: 1, status: 1, _id: 0 }
 )
 ```
 
@@ -814,13 +815,12 @@ db.orders.find(
 SELECT *
 FROM orders
 WHERE status = "A"
-AND price = 5514
+AND price = 1000
 ```
 
 ```javascript
 db.orders.find(
-    { status: "A",
-      price: 5514 }
+  { status: "A", price: 1000 }
 )
 ```
 
@@ -830,12 +830,12 @@ db.orders.find(
 SELECT *
 FROM orders
 WHERE status = "A"
-OR price = 5514
+OR price = 1000
 ```
 
 ```javascript
 db.orders.find(
-    { $or: [ { status: "A" } , { price: 5514 } ] }
+    { $or: [ { status: "A" } , { price: 1000 } ] }
 )
 ```
 
@@ -872,13 +872,14 @@ db.orders.find(
 ```SQL
 SELECT *
 FROM orders
-WHERE price > 10000
-AND   price <= 12000
+WHERE cust_id = "mickey@mouse.com"
+AND   price > 5000
+AND   price <= 10000
 ```
 
 ```javascript
 db.orders.find(
-   { price: { $gt: 10000, $lte: 12000 } }
+   { price: { $gt: 5000, $lte: 10000 }, cust_id: "mickey@mouse.com" }
 )
 ```
 
@@ -887,11 +888,11 @@ db.orders.find(
 ```SQL
 SELECT *
 FROM orders
-WHERE cust_id like "%mi%"
+WHERE cust_id like "%ie%"
 ```
 
 ```javascript
-db.orders.find( { cust_id: /mi/ } )
+db.orders.find( { cust_id: /ie/ } )
 ```
 
 ---
@@ -899,24 +900,26 @@ db.orders.find( { cust_id: /mi/ } )
 ```SQL
 SELECT *
 FROM orders
-WHERE cust_id like "mic%"
+WHERE cust_id like "mi%"
 ```
 
 ```javascript
-db.orders.find( { cust_id: /^mic/ } )
+db.orders.find( { cust_id: /^mi/ } )
 ```
 
 ---
 
 ```SQL
-SELECT *
+SELECT id, cust_id, ord_date
 FROM orders
 WHERE status = "A"
 ORDER BY cust_id ASC
 ```
 
 ```javascript
-db.orders.find( { status: "A" } ).sort( { cust_id: 1 } )
+db.orders.find(
+  { status: "A" },
+  { _id: 1, cust_id: 1, ord_date: 1 } ).sort( { cust_id: 1 } )
 ```
 
 ---
@@ -975,7 +978,9 @@ FROM orders
 
 ```javascript
 db.orders.distinct( "cust_id" )
-db.orders.aggregate( [ { $group : { _id : "$cust_id" } } ] )
+db.orders.aggregate( [
+    { $group : { _id : "$cust_id" } }
+  ])
 ```
 
 ---
@@ -983,11 +988,12 @@ db.orders.aggregate( [ { $group : { _id : "$cust_id" } } ] )
 ```SQL
 SELECT *
 FROM orders
+WHERE cust_id = "mickey@mouse.com"
 LIMIT 3
 ```
 
 ```javascript
-db.orders.find().limit(3)
+db.orders.find({ cust_id: "mickey@mouse.com" }).limit(3)
 ```
 
 ---
@@ -995,12 +1001,27 @@ db.orders.find().limit(3)
 ```SQL
 SELECT *
 FROM orders
+WHERE cust_id = "mickey@mouse.com"
+ORDER BY ord_date DESC
+LIMIT 3
+```
+
+```javascript
+db.orders.find({ cust_id: "mickey@mouse.com" }).sort({ord_date: -1}).limit(3)
+```
+
+---
+
+```SQL
+SELECT *
+FROM orders
+WHERE cust_id = "mickey@mouse.com"
 LIMIT 3
 SKIP 2
 ```
 
 ```javascript
-db.orders.find().limit(3).skip(2)
+db.orders.find({ cust_id: "mickey@mouse.com" }).limit(3).skip(2)
 ```
 
 ---
@@ -1009,24 +1030,29 @@ db.orders.find().limit(3).skip(2)
 EXPLAIN SELECT *
 FROM orders
 WHERE status = "A"
+
+EXPLAIN SELECT *
+FROM orders
+WHERE cust_id = "mickey@mouse.com"
 ```
 
 ```javascript
-db.orders.find( { status: "A" } ).explain()
+db.orders.find({ status: "A" } ).explain()
+db.orders.find({ cust_id: "mickey@mouse.com" }).explain()
 ```
 
 ### Update
 
 ```SQL
 UPDATE orders
-SET status = "C"
+SET status = "X"
 WHERE price > 5000
 ```
 
 ```javascript
 db.orders.updateMany(
    { price: { $gt: 5000 } },
-   { $set: { status: "C" } }
+   { $set: { status: "X" } }
 )
 ```
 
@@ -1034,14 +1060,14 @@ db.orders.updateMany(
 
 ```SQL
 UPDATE orders
-SET price = price + 3
-WHERE status = "A"
+SET price = price + 100
+WHERE status = "X"
 ```
 
 ```javascript
 db.orders.updateMany(
-   { status: "A" } ,
-   { $inc: { price: 3 } }
+   { status: "X" } ,
+   { $inc: { price: 100 } }
 )
 ```
 
@@ -1051,11 +1077,11 @@ db.orders.updateMany(
 
 ```SQL
 DELETE FROM orders
-WHERE status = "C"
+WHERE status = "X"
 ```
 
 ```javascript
-db.orders.deleteMany( { status: "C" } )
+db.orders.deleteMany( { status: "X" } )
 ```
 
 ---
@@ -1077,19 +1103,9 @@ FROM orders
 
 ```javascript
 db.orders.aggregate( [
-   {
-     $group: {
-        _id: null,
-        count: { $sum: 1 }
-     }
- },
- {
-     $project: {
-         count: 1,
-         _id: 0
-     }
- }
-] )
+   { $group: { _id: null, count: { $sum: 1 }}},
+   { $project: { count: 1, _id: 0 }}
+ ])
 ```
 
 ---
@@ -1101,63 +1117,44 @@ FROM orders
 
 ```javascript
 db.orders.aggregate( [
-   {
-     $group: {
-        _id: null,
-        total: { $sum: "$price" }
-     }
-   }
-] )
+   { $group: { _id: null, total: { $sum: "$price" }}}
+ ])
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       SUM(price) AS total
+SELECT cust_id, SUM(price) AS total
 FROM orders
 GROUP BY cust_id
 ```
 
 ```javascript
 db.orders.aggregate( [
-   {
-     $group: {
-        _id: "$cust_id",
-        total: { $sum: "$price" }
-     }
-   }
-] )
+   { $group: { _id: "$cust_id", total: { $sum: "$price" }}}
+ ])
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       SUM(price) AS total
+SELECT cust_id, SUM(price) AS total
 FROM orders
 GROUP BY cust_id
-ORDER BY total
+ORDER BY total DESC
 ```
 
 ```javascript
 db.orders.aggregate( [
-   {
-     $group: {
-        _id: "$cust_id",
-        total: { $sum: "$price" }
-     }
-   },
-   { $sort: { total: 1 } }
-] )
+   { $group: { _id: "$cust_id", total: { $sum: "$price" }}},
+   { $sort: { total: -1 }}
+ ])
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       ord_date,
-       SUM(price) AS total
+SELECT cust_id, ord_date, SUM(price) AS total
 FROM orders
 GROUP BY cust_id, ord_date
 ```
@@ -1177,16 +1174,27 @@ db.orders.aggregate( [
      }
    }
 ] )
+
+db.orders.aggregate( [
+   {
+     $group: {
+        _id: {
+           cust_id: "$cust_id",
+           ord_date: "$ord_date"
+        },
+        total: { $sum: "$price" }
+     }
+   }
+] )
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       count(*)
+SELECT cust_id, count(*)
 FROM orders
 GROUP BY cust_id
-HAVING count(*) > 1
+HAVING count(*) > 5
 ```
 
 ```javascript
@@ -1197,20 +1205,17 @@ db.orders.aggregate( [
         count: { $sum: 1 }
      }
    },
-   { $match: { count: { $gt: 1 } } }
+   { $match: { count: { $gt: 5 } } }
 ] )
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       ord_date,
-       SUM(price) AS total
+SELECT cust_id, ord_date, SUM(price) AS total
 FROM orders
-GROUP BY cust_id,
-         ord_date
-HAVING total > 250
+GROUP BY cust_id, ord_date
+HAVING total > 10000
 ```
 
 ```javascript
@@ -1227,29 +1232,7 @@ db.orders.aggregate( [
         total: { $sum: "$price" }
      }
    },
-   { $match: { total: { $gt: 250 } } }
-] )
-```
-
----
-
-```SQL
-SELECT cust_id,
-       SUM(price) as total
-FROM orders
-WHERE status = 'A'
-GROUP BY cust_id
-```
-
-```javascript
-db.orders.aggregate( [
-   { $match: { status: 'A' } },
-   {
-     $group: {
-        _id: "$cust_id",
-        total: { $sum: "$price" }
-     }
-   }
+   { $match: { total: { $gt: 10000 } } }
 ] )
 ```
 
@@ -1258,113 +1241,52 @@ db.orders.aggregate( [
 ```SQL
 SELECT cust_id, SUM(price) as total
 FROM orders
-WHERE status = 'A'
+WHERE status = "A"
 GROUP BY cust_id
-HAVING total > 250
 ```
 
 ```javascript
 db.orders.aggregate( [
-   { $match: { status: 'A' } },
-   {
-     $group: {
-        _id: "$cust_id",
-        total: { $sum: "$price" }
-     }
-   },
-   { $match: { total: { $gt: 250 } } }
+   { $match: { status: "A" }},
+   { $group: { _id: "$cust_id", total: { $sum: "$price" }}}
 ] )
 ```
 
 ---
 
 ```SQL
-SELECT cust_id,
-       SUM(li.qty) as qty
-FROM orders o,
-     order_lineitem li
+SELECT cust_id, SUM(price) as total
+FROM orders
+WHERE status = "A"
+GROUP BY cust_id
+HAVING total > 1000
+```
+
+```javascript
+db.orders.aggregate( [
+   { $match: { status: "A" } },
+   { $group: { _id: "$cust_id", total: { $sum: "$price" }}},
+   { $match: { total: { $gt: 1000 }}}
+ ])
+```
+
+---
+
+```SQL
+SELECT cust_id, SUM(li.qty) as qty
+FROM orders o, items li
 WHERE li.order_id = o.id
 GROUP BY cust_id
 ```
 
 ```javascript
-db.orders.aggregate( [
+db.orders.aggregate([
    { $unwind: "$items" },
-   {
-     $group: {
-        _id: "$cust_id",
-        qty: { $sum: "$items.qty" }
-     }
-   }
-] )
-```
-
----
-
-```SQL
-SELECT COUNT(*)
-FROM (SELECT cust_id,
-             ord_date
-      FROM orders
-      GROUP BY cust_id,
-               ord_date)
-      as DerivedTable
-```
-
-```javascript
-db.orders.aggregate( [
-   {
-     $group: {
-        _id: {
-           cust_id: "$cust_id",
-           ord_date: { $dateToString: {
-              format: "%Y-%m-%d",
-              date: "$ord_date"
-           }}
-        }
-     }
-   },
-   {
-     $group: {
-        _id: null,
-        count: { $sum: 1 }
-     }
-   }
-] )
+   { $group: { _id: "$cust_id", qty: { $sum: "$items.qty" }}}
+ ])
 ```
 
 ## References
 
 1. [SQL to MongoDB MQL Mapping](https://docs.mongodb.com/manual/reference/sql-comparison/)
 1. [SQL to MongoDB Aggreation Mapping](https://docs.mongodb.com/manual/reference/sql-aggregation-comparison/)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### References
